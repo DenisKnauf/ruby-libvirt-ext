@@ -76,10 +76,10 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Error     'Misc I/O Error'
-				EOF       'End-of-file from server'
-				KeepAlive 'Keepalive timer triggered'
-				Client    'Client requested it'
+				Error     'misc I/O Error'
+				EOF       'end-of-file from server'
+				KeepAlive 'keepalive timer triggered'
+				Client    'client requested it'
 				Last      '--'
 			end
 		end
@@ -88,7 +88,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				Last   '--'
 			end
 		end
@@ -97,7 +97,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				Last   '--'
 			end
 		end
@@ -106,7 +106,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				Last   '--'
 			end
 		end
@@ -115,7 +115,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				Last   '--'
 			end
 		end
@@ -124,7 +124,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				Last   '--'
 			end
 		end
@@ -133,7 +133,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown       'the reason is unknown'
+				Unkown       'unknown reason'
 				User         'paused on user request'
 				Migration    'paused for offline migration'
 				Save         'paused for save'
@@ -151,7 +151,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unknown      'the reason is unknown'
+				Unknown      'unknown reason'
 				Booted       'normal startup from boot'
 				Migrated     'migrated from another host'
 				Restored     'restored from a state file'
@@ -168,7 +168,7 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown 'the reason is unknown'
+				Unkown 'unknown reason'
 				User   'shutting down on user request'
 				Last   '--'
 			end
@@ -178,30 +178,30 @@ module Libvirt
 			enum_fields :comment
 			start_at 0
 			enum do
-				Unkown       'the reason is unknown'
+				Unkown       'unknown reason'
 				Shutdown     'normal shutdown'
 				Destroyed    'forced poweroff'
 				Crashed      'domain crashed'
 				Migrated     'migrated to another host'
 				Saved        'saved to a file'
 				Failed       'domain failed to start'
-				FromSnapshot 'restoed from a snapshot which was taken while domain was shutoff'
+				FromSnapshot 'restored from a snapshot which was taken while domain was shutoff'
 				Last         '--'
 			end
 		end
 
 		class State < Enum
-			enum_fields :commend, :reasons
+			enum_fields :comment, :reasons
 			start_at 0
 			enum do 
-				Nostate     'no state', NostateReason
-				Running     'the domain is running', RunningReason
-				Blocked     'the domain is blocked on resource', BlockedReason
-				Paused      'the domain is paused by user', PausedReason
-				Shutdown    'the domain is being shut down', ShutdownReason
-				Shutoff     'the domain is shut off', ShutoffReason
-				Crashed     'the domain is crashed', CrashedReason
-				PMSuspended 'the domain is suspended by guest power management', PMSuspendedReason
+				Nostate     'No state', NostateReason
+				Running     'The domain is running', RunningReason
+				Blocked     'The domain is blocked on resource', BlockedReason
+				Paused      'The domain is paused by user', PausedReason
+				Shutdown    'The domain is being shut down', ShutdownReason
+				Shutoff     'The domain is shut off', ShutoffReason
+				Crashed     'The domain is crashed', CrashedReason
+				PMSuspended 'The domain is suspended by guest power management', PMSuspendedReason
 				Last        '--'
 			end
 
@@ -215,8 +215,12 @@ module Libvirt
 			end
 		end
 
+		def state_reason
+			State[self.state]
+		end
+
 		def inspect
-			state, reason = State[self.state]
+			state, reason = state_reason
 			"#<#{self.class.name}: #{uuid} #{name} #{state.title}[#{reason.title}]>"
 		end
 	end
