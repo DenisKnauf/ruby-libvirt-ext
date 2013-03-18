@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "libvirt-ext"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Denis Knauf"]
-  s.date = "2013-03-16"
+  s.date = "2013-03-18"
   s.description = "ruby-libvirt is only a mapped api and unrubish. libvirt-ext extents functionality to be more rubish."
   s.email = "Denis.Knauf@gmail.com"
   s.extra_rdoc_files = [
@@ -25,13 +25,14 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/libvirt-ext.rb",
+    "libvirt-ext.gemspec",
     "test/helper.rb",
     "test/test_libvirt-ext.rb"
   ]
   s.homepage = "http://github.com/DenisKnauf/libvirt-ext"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.23"
   s.summary = "Extents ruby-libvirt with usefull functions"
 
   if s.respond_to? :specification_version then
